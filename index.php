@@ -45,10 +45,10 @@
 		    <div class="page-header clearfix">
 		     <h2> SASE Website Project CS 340 </h2> 
                        <p> Project should include CRUD operations. In this website you can:
-				<ol> 	<li> CREATE new employess and  dependents </li>
-					<li> RETRIEVE all dependents and prjects for an employee</li>
-                                        <li> UPDATE employeee and dependent records</li>
-					<li> DELETE employee and dependent records </li>
+				<ol> 	<li> CREATE new members, Big-Little groups, and meetings </li>
+					<li> RETRIEVE members, member info, Big-Little groups, and meetings </li>
+                                        <li> UPDATE member info and meeting info </li>
+					<li> DELETE members, members/groups from Big-Little groups, and meetings  </li>
 				</ol>
 		       <h2 class="pull-left">Member Details</h2>
                         <!-- <a href="createEmployee.php" class="btn btn-success pull-right">Add New Employee</a> -->
