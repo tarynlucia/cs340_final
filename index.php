@@ -47,7 +47,7 @@
                        <p> On this webpage you can:
 				<ol> 	<li> CREATE new Members </li>
 					<li> RETRIEVE all Meetings attended by a member</li>
-                                        <li> Add new Meetings attended by a member</li>
+                                        <li> CREATE new Meetings attended by a member</li>
 					<li> DELETE member records </li>
 				</ol>
 		       <h2 class="pull-left">Member Details</h2>
