@@ -4,10 +4,8 @@
 	require_once "config.php";
  
 // Define variables and initialize with empty values
-// Note: You can not update SSN 
 $Group_name = $Big_ID = "";
 $Group_name_err = $Big_ID_err = "" ;
-// Form default values
 
 if(isset($_GET["Group_number"]) && !empty(trim($_GET["Group_number"]))){
 	$_SESSION["Group_number"] = $_GET["Group_number"];
@@ -38,10 +36,8 @@ if(isset($_GET["Group_number"]) && !empty(trim($_GET["Group_number"]))){
 // Post information about the employee when the form is submitted
 // Processing form data when form is submitted
 if($_SERVER["REQUEST_METHOD"] == "POST"){
-    // the id is hidden and can not be changed
     $Group_number = $_SESSION["Group_number"];
-    // Validate form data this is similar to the create Employee file
-    // Validate name
+    // Validate Group_name
     $Group_name = trim($_POST["Group_name"]);
     if(empty($Group_name)){
         $Group_name_err = "Please enter a group name.";
@@ -49,7 +45,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         $Group_name_err = "Please enter a valid group name.";
     }  
 
-    // Validate Address
+    // Validate Big_ID
     $Big_ID = trim($_POST["Big_ID"]);
     if(empty($Big_ID)){
         $Big_ID_err = "Please enter big's ID.";     
@@ -87,9 +83,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     // Close connection
     mysqli_close($link);
 } else {
-
-    // Check existence of sID parameter before processing further
-	// Form default values
 
 	if(isset($_GET["Group_number"]) && !empty(trim($_GET["Group_number"]))){
 		$_SESSION["Group_number"] = $_GET["Group_number"];

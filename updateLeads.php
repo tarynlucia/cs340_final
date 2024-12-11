@@ -4,7 +4,6 @@
 	require_once "config.php";
  
 // Define variables and initialize with empty values
-// Note: You can not update SSN 
 $OSU_ID = "";
 $OSU_ID_err = "" ;
 // Form default values
@@ -40,7 +39,6 @@ if(isset($_GET["Event_number"]) && !empty(trim($_GET["Event_number"]))){
 if($_SERVER["REQUEST_METHOD"] == "POST"){
     // the id is hidden and can not be changed
     $Event_number = $_SESSION["Event_number"];
-    // Validate form data this is similar to the create Employee file
     // Validate OSU_ID
     $OSU_ID = trim($_POST["OSU_ID"]);
     if(empty($OSU_ID)){
@@ -77,8 +75,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     // Close connection
     mysqli_close($link);
 } else {
-
-    // Check existence of sID parameter before processing further
 	// Form default values
 
 	if(isset($_GET["Event_number"]) && !empty(trim($_GET["Event_number"]))){

@@ -1,6 +1,5 @@
 <?php
 	session_start();
-	//$currentpage="View Employees"; 
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -97,7 +96,6 @@
 										echo "<td>" . $row['Major'] . "</td>";
                                         echo "<td>" . $row['Group_number'] . "</td>";
                                         echo "<td>";
-                                            // echo "<a href='viewProjects.php?Ssn=". $row['OSU_ID']."&Lname=".$row['Lname']."' title='View Projects' data-toggle='tooltip'><span class='glyphicon glyphicon-eye-open'></span></a>";
                                             echo "<a href='updateMember.php?OSU_ID=". $row['OSU_ID'] ."' title='Update Member' data-toggle='tooltip'><span class='glyphicon glyphicon-pencil'></span></a>";
                                             echo "<a href='deleteMember.php?OSU_ID=". $row['OSU_ID'] ."' title='Delete Member' data-toggle='tooltip'><span class='glyphicon glyphicon-trash'></span></a>";
 											echo "<a href='viewMeetingsAttended.php?OSU_ID=". $row['OSU_ID'] ."' title='View Meetings Attended' data-toggle='tooltip'><span class='glyphicon glyphicon-user'></span></a>";

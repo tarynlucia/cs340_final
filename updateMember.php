@@ -4,7 +4,6 @@
 	require_once "config.php";
  
 // Define variables and initialize with empty values
-// Note: You can not update SSN 
 $Fname = $Lname = $Year = $Major = $Group_number = "";
 $Fname_err = $Lname_err = $Year_err = $Major_err = $Group_number_err = "";
 // Form default values
@@ -43,7 +42,6 @@ if(isset($_GET["OSU_ID"]) && !empty(trim($_GET["OSU_ID"]))){
 if($_SERVER["REQUEST_METHOD"] == "POST"){
     // the id is hidden and can not be changed
     $OSU_ID = $_SESSION["OSU_ID"];
-    // Validate form data this is similar to the create Employee file
     // Validate name
     $Fname = trim($_POST["Fname"]);
 
@@ -108,8 +106,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     // Close connection
     mysqli_close($link);
 } else {
-
-    // Check existence of sID parameter before processing further
 	// Form default values
 
 	if(isset($_GET["OSU_ID"]) && !empty(trim($_GET["OSU_ID"]))){

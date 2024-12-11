@@ -88,7 +88,6 @@
                                         echo "<td>" . $row['Lname']."</td>";
                                         echo "<td>" . $row['Year'] . "</td>";
                                         echo "<td>" . $row['Major'] . "</td>";
-                                        // echo "<td>" . $row['Group_number'] . "</td>";
                                         echo "<td>";
                                             echo "<a href='deleteLittle.php?Group_number=". $_SESSION["Group_number"] . "&OSU_ID=" . $row['OSU_ID'] ."' title='Delete Little' data-toggle='tooltip'><span class='glyphicon glyphicon-trash'></span></a>";
                                             echo "</td>";
@@ -100,7 +99,6 @@
                             } else {
                                 echo "No Littles. ";
                             }
-                //				mysqli_free_result($result);
                         } else{
                             // URL doesn't contain valid id parameter. Redirect to error page
                             header("location: error.php");

@@ -1,6 +1,5 @@
 <?php
 	session_start();
-	//$currentpage="View Employees"; 
 ?>
 <!DOCTYPE html>
 <html lang="en">

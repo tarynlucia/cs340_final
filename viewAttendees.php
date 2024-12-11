@@ -36,7 +36,6 @@
                 <div class="col-md-12">
                     <div class="page-header clearfix">
                         <h2 class="pull-left">View Attendees</h2>
-						<!-- <a href="addProject.php" class="btn btn-success pull-right">Add Project</a> -->
                     </div>
 <?php
 
@@ -52,7 +51,6 @@ if(isset($_SESSION["Event_number"]) ){
     // Prepare a select statement
     $sql = "SELECT M.Fname, M.Lname, A.OSU_ID FROM Attends A JOIN Members M ON A.OSU_ID = M.OSU_ID WHERE Event_number = ?";
 
-	//$sql = "SELECT Essn, Pno, Hours From WORKS_ON WHERE Essn = ? ";   
     if($stmt = mysqli_prepare($link, $sql)){
         // Bind variables to the prepared statement as parameters
         mysqli_stmt_bind_param($stmt, "i", $param_Event_number);      
@@ -93,7 +91,6 @@ if(isset($_SESSION["Event_number"]) ){
 			} else {
 				echo "No Attendees. ";
 			}
-//				mysqli_free_result($result);
         } else{
 			// URL doesn't contain valid id parameter. Redirect to error page
             header("location: error.php");

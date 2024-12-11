@@ -78,9 +78,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     mysqli_close($link);
 } else {
 
-    // Check existence of sID parameter before processing further
-	// Form default values
-
 	if(isset($_GET["Event_number"]) && !empty(trim($_GET["Event_number"]))){
 		$_SESSION["Event_number"] = $_GET["Event_number"];
 

@@ -13,11 +13,7 @@ if(isset($_GET["Group_number"]) && !empty(trim($_GET["Group_number"]))){
 	$_SESSION["Group_number"] = $_GET["Group_number"];
     $Group_number = $_SESSION["Group_number"];
 }
- 
-// Post information about the employee when the form is submitted
-// Processing form data when form is submitted
 if($_SERVER["REQUEST_METHOD"] == "POST"){
-    // Validate form data this is similar to the create Employee file
     // Validate OSU_ID
     $OSU_ID = trim($_POST["OSU_ID"]);
     if(empty($OSU_ID)){
