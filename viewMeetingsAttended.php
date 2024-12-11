@@ -77,6 +77,7 @@ if(isset($_SESSION["OSU_ID"]) ){
                             echo "<th>Event Name</th>";
 							echo "<th>Date</th>";
 							echo "<th>Location</th>";
+                            echo "<th>Actions</th>";
                         echo "</tr>";
                     echo "</thead>";
                     echo "<tbody>";							
@@ -87,6 +88,9 @@ if(isset($_SESSION["OSU_ID"]) ){
                         echo "<td>" . $row['Event_name'] . "</td>";
 						echo "<td>" . $row['Date']."</td>";
                         echo "<td>" . $row['Location'] . "</td>";
+                        echo "<td>";
+                            echo "<a href='deleteAttendedMeeting.php?OSU_ID=$OSU_ID&Event_number=". $row['Event_number'] ."' title='Delete Attended Meeting' data-toggle='tooltip'><span class='glyphicon glyphicon-trash'></span></a>";
+                        echo "</td>";
 						echo "</tr>";
                     }
                     echo "</tbody>";                            
