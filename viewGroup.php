@@ -71,7 +71,7 @@
                                 echo "<table class='table table-bordered table-striped'>";
                                     echo "<thead>";
                                         echo "<tr>";
-                                            echo "<th>OSU_ID</th>";
+                                            echo "<th>OSU ID</th>";
                                             echo "<th>First Name</th>";
                                             echo "<th>Last Name </th>";
                                             echo "<th>Year</th>";

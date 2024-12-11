@@ -54,7 +54,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="page-header clearfix">
-                        <h2> SASE Website Project CS340 </h2> 
+                        <h2> SASE Website Project CS 340 </h2> 
                             <p> In this page you can:
                             <ol> 	
                                 <li> CREATE big/little group </li>
@@ -87,7 +87,7 @@
                                     echo "<tr>";
                                         echo "<th width=8%>Group Number</th>";
                                         echo "<th width=10%>Group Name</th>";
-                                        echo "<th width=10%>Big_ID</th>";
+                                        echo "<th width=10%>Big ID</th>";
                                         echo "<th width=15%>Action </th>";
                                     echo "</tr>";
                                 echo "</thead>";

@@ -54,7 +54,7 @@
             <div class="row">
                 <div class="col-md-12">
 		    <div class="page-header clearfix">
-		     <h2> SASE Website Project CS340 </h2> 
+		     <h2> SASE Website Project CS 340 </h2> 
                     <p> In this page you can:
                     <ol>
                         <li> CREATE new meeting </li> 	
@@ -83,8 +83,8 @@
                             echo "<table class='table table-bordered table-striped'>";
                                 echo "<thead>";
                                     echo "<tr>";
-                                        echo "<th width=8%>Event_number</th>";
-                                        echo "<th width=10%>Event_name Name</th>";
+                                        echo "<th width=8%>Event Number</th>";
+                                        echo "<th width=10%>Name</th>";
                                         echo "<th width=10%>Date</th>";
                                         echo "<th width=15%>Location </th>";
                                         echo "<th width=10%>Action</th>";
