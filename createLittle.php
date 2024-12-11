@@ -19,8 +19,46 @@ if(isset($_GET["Group_number"]) && !empty(trim($_GET["Group_number"]))){
 if($_SERVER["REQUEST_METHOD"] == "POST"){
     // Validate OSU_ID
     $OSU_ID = trim($_POST["OSU_ID"]);
-    if(empty($OSU_ID)){
-        $OSU_ID_err = "Please enter OSU_ID.";     
+    if (empty($OSU_ID)) {
+        $OSU_ID_err = "Please enter OSU_ID.";
+    } else {
+        // Check if the OSU_ID is a member
+        $member_check_sql = "SELECT 1 FROM Members WHERE OSU_ID = ?";
+        if ($member_check_stmt = mysqli_prepare($link, $member_check_sql)) {
+            mysqli_stmt_bind_param($member_check_stmt, "i", $param_OSU_ID);
+            $param_OSU_ID = $OSU_ID;
+
+            // Execute the query
+            if (mysqli_stmt_execute($member_check_stmt)) {
+                mysqli_stmt_store_result($member_check_stmt);
+                if (mysqli_stmt_num_rows($member_check_stmt) == 0) {
+                    $OSU_ID_err = "This OSU_ID is not a member.";
+                }
+            } else {
+                echo "Error checking membership.";
+            }
+            mysqli_stmt_close($member_check_stmt);
+        }
+
+        // Check if the OSU_ID already exists in the group
+        if (empty($OSU_ID_err)) { // Only proceed if no prior error
+            $group_check_sql = "SELECT 1 FROM Members WHERE OSU_ID = ? AND Group_number = ?";
+            if ($group_check_stmt = mysqli_prepare($link, $group_check_sql)) {
+                mysqli_stmt_bind_param($group_check_stmt, "ii", $param_OSU_ID, $param_Group_number);
+                $param_Group_number = $Group_number;
+
+                // Execute the query
+                if (mysqli_stmt_execute($group_check_stmt)) {
+                    mysqli_stmt_store_result($group_check_stmt);
+                    if (mysqli_stmt_num_rows($group_check_stmt) > 0) {
+                        $OSU_ID_err = "This OSU_ID is already in the group.";
+                    }
+                } else {
+                    echo "Error checking group membership.";
+                }
+                mysqli_stmt_close($group_check_stmt);
+            }
+        }
     }
 
     // Check input errors before inserting into database
@@ -87,7 +125,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                         <a href="viewGroup.php?Group_number=<?php echo $Group_number ?>" class="btn btn-default">Cancel</a>
                     </form>
                 </div>
-            </div>        
+            </div>      
         </div>
     </div>
 </body>
