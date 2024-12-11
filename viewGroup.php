@@ -90,7 +90,7 @@
                                         echo "<td>" . $row['Major'] . "</td>";
                                         // echo "<td>" . $row['Group_number'] . "</td>";
                                         echo "<td>";
-                                            echo "<a href='deleteLittle.php?Group_number=". $_SESSION["Group_number"] . "?OSU_ID=" . $row['OSU_ID'] ."' title='Delete Little' data-toggle='tooltip'><span class='glyphicon glyphicon-trash'></span></a>";
+                                            echo "<a href='deleteLittle.php?Group_number=". $_SESSION["Group_number"] . "&OSU_ID=" . $row['OSU_ID'] ."' title='Delete Little' data-toggle='tooltip'><span class='glyphicon glyphicon-trash'></span></a>";
                                             echo "</td>";
                                         echo "</tr>";
                                     }

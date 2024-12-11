@@ -38,6 +38,17 @@
         require_once "config.php";
 //		include "header.php";
 	?>
+
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            <ul class="nav navbar-nav">
+                <li><a class="navbar-brand" href="big_little_groups.php">Big/Little</a></li> <!-- Replace with the URL for the third page -->
+                <li><a href="index.php">Members</a></li>
+                <li><a href="meetings.php">Meetings</a></li> <!-- Replace with the URL for the second page -->
+            </ul>
+        </div>
+    </nav>
+
     <div class="wrapper">
         <div class="container-fluid">
             <div class="row">
@@ -83,14 +94,14 @@
                                 echo "<tbody>";
                                 while($row = mysqli_fetch_array($result)){
                                     echo "<tr>";
-                                        echo "<td>" . $row['Group_number'] . "</td>";
-                                        echo "<td>" . $row['Group_name'] . "</td>";
-                                        echo "<td>" . $row['Big_ID'] . "</td>";
-                                        echo "<td>";
-                                            echo "<a href='viewGroup.php?Group_number=". $_SESSION["Group_number"] ."&Group_name=".$row['Group_name']."' title='View Group' data-toggle='tooltip'><span class='glyphicon glyphicon-eye-open'></span></a>";
-                                            echo "<a href='updateGroup.php?Group_number=". $_SESSION["Group_number"] ."' title='Update Group' data-toggle='tooltip'><span class='glyphicon glyphicon-pencil'></span></a>";
-                                            echo "<a href='deleteGroup.php?Group_number=". $_SESSION["Group_number"] ."' title='Delete Group' data-toggle='tooltip'><span class='glyphicon glyphicon-trash'></span></a>";
-                                        echo "</td>";
+                                    echo "<td>" . $row['Group_number'] . "</td>";
+                                    echo "<td>" . $row['Group_name'] . "</td>";
+                                    echo "<td>" . $row['Big_ID'] . "</td>";
+                                    echo "<td>";
+                                        echo "<a href='viewGroup.php?Group_number=" . $row['Group_number'] . "&Group_name=" . $row['Group_name'] . "' title='View Group' data-toggle='tooltip'><span class='glyphicon glyphicon-eye-open'></span></a>";
+                                        echo "<a href='updateGroup.php?Group_number=" . $row['Group_number'] . "' title='Update Group' data-toggle='tooltip'><span class='glyphicon glyphicon-pencil'></span></a>";
+                                        echo "<a href='deleteGroup.php?Group_number=" . $row['Group_number'] . "' title='Delete Group' data-toggle='tooltip'><span class='glyphicon glyphicon-trash'></span></a>";
+                                    echo "</td>";
                                     echo "</tr>";
                                 }
                                 echo "</tbody>";                            

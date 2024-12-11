@@ -43,8 +43,8 @@
         <div class="container-fluid">
             <ul class="nav navbar-nav">
                 <li><a class="navbar-brand" href="index.php">Members</a></li>
-                <li><a href="URL_FOR_PAGE_2">Meetings</a></li> <!-- Replace with the URL for the second page -->
-                <li><a href="URL_FOR_PAGE_3">Big/Little</a></li> <!-- Replace with the URL for the third page -->
+                <li><a href="meetings.php">Meetings</a></li> <!-- Replace with the URL for the second page -->
+                <li><a href="big_little_groups.php">Big/Little</a></li> <!-- Replace with the URL for the third page -->
             </ul>
         </div>
     </nav>
