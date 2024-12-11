@@ -11,29 +11,28 @@ $Group_number_err = $Group_name_err = $Big_ID_err = "";
  
 // Processing form data when form is submitted
 if($_SERVER["REQUEST_METHOD"] == "POST"){
-    // Validate group name
-    $Group_number = trim($_POST["Group_number"]);
-    if(empty($Group_number)){
-        $Group_number_err = "Please enter a Group Number.";
-    } else if(!ctype_digit($Group_number)){
-        $Group_number_err = "Please enter a valid Group Number.";
-    } 
 
-    // Validate group number
-    $Group_name = trim($_POST["Group_name"]);
-    if(empty($Group_name)){
-        $Group_name_err = "Please enter a Group Name.";
-    } else if(!filter_var($Group_name, FILTER_VALIDATE_REGEXP, array("options"=>array("regexp"=>"/^[a-zA-Z\s]+$/")))){
-        $Group_name_err = "Please enter a valid Group Name.";
-    } 
+    // // Validate group name
+    // $Group_number = trim($_POST["Group_number"]);
+    // if(empty($Group_number)){
+    //     $Group_number_err = "Please enter a Group Number.";
+    // } else if(!ctype_digit($Group_number)){
+    //     $Group_number_err = "Please enter a valid Group Number. Group Number may not already exist.";
+    // }
 
-    // Validate big's ID
-    $Big_ID = trim($_POST["Big_ID"]);
-    if(empty($Big_ID)){
-        $Big_ID_err = "Please enter the Big's ID.";     
-    } else if(!ctype_digit($Big_ID)){
-        $Big_ID_err = "Please enter a valid Big ID.";
-    } 
+    // // Validate group number
+    // $Group_name = trim($_POST["Group_name"]);
+    // if(empty($Group_name)){
+    //     $Group_name_err = "Please enter a Group Name.";
+    // }
+
+    // // Validate big's ID
+    // $Big_ID = trim($_POST["Big_ID"]);
+    // if(empty($Big_ID)){
+    //     $Big_ID_err = "Please enter the Big's ID.";     
+    // } else if(!ctype_digit($Big_ID)){
+    //     $Big_ID_err = "Please enter numerical value for the Big ID.";
+    // }
 	
     // Check input errors before inserting in database
     if(empty($Group_number_err) && empty($Group_name_err) && empty($Big_ID_err)) {
@@ -55,9 +54,63 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 // Records created successfully. Redirect to landing page
 				    header("location: big_little_groups.php");
 					exit();
-            } else {
-                echo "<center><h4>Error while creating new employee</h4></center>";
-				$Group_number_err = "Enter a unique Group Number.";
+            } 
+            else {
+				// Validate group name
+                $Group_number = trim($_POST["Group_number"]);
+                if(empty($Group_number)){
+                    $Group_number_err = "Please enter a Group Number.";
+                } else if(!ctype_digit($Group_number)){
+                    $Group_number_err = "Please enter numerical value for the Group Number.";
+                } else if(empty($Group_number_err)) {
+                    $group_check_sql = "SELECT 1 FROM Big_Little_Group WHERE Group_number = ?";
+                    if ($group_check_stmt = mysqli_prepare($link, $group_check_sql)) {
+                        mysqli_stmt_bind_param($group_check_stmt, "i", $param_Group_number);
+                        $param_Group_number = $Group_number;
+
+                        // Execute the query
+                        if (mysqli_stmt_execute($group_check_stmt)) {
+                            mysqli_stmt_store_result($group_check_stmt);
+                            if (mysqli_stmt_num_rows($group_check_stmt) > 0) {
+                                $Group_number_err = "Group Number already exists. Please enter a unique number.";
+                            }
+                        } else {
+                            echo "Error checking groups.";
+                        }
+                        mysqli_stmt_close($group_check_stmt);
+                    }
+                }
+            
+                // Validate group number
+                $Group_name = trim($_POST["Group_name"]);
+                if(empty($Group_name)){
+                    $Group_name_err = "Please enter a Group Name.";
+                }
+            
+                // Validate big's ID
+                $Big_ID = trim($_POST["Big_ID"]);
+                if(empty($Big_ID)){
+                    $Big_ID_err = "Please enter the Big's ID.";     
+                } else if(!ctype_digit($Big_ID)){
+                    $Big_ID_err = "Please enter numerical value for the Big ID.";
+                } else if(empty($Big_ID_err)) {
+                    $group_check_sql = "SELECT 1 FROM Officers WHERE OSU_ID = ?";
+                    if ($group_check_stmt = mysqli_prepare($link, $group_check_sql)) {
+                        mysqli_stmt_bind_param($group_check_stmt, "i", $param_OSU_ID);
+                        $param_OSU_ID = $OSU_ID;
+
+                        // Execute the query
+                        if (mysqli_stmt_execute($group_check_stmt)) {
+                            mysqli_stmt_store_result($group_check_stmt);
+                            if (mysqli_stmt_num_rows($group_check_stmt) <= 0) {
+                                $Big_ID_err = "Big ID must belong to a club officer.";
+                            }
+                        } else {
+                            echo "Error checking Big ID.";
+                        }
+                        mysqli_stmt_close($group_check_stmt);
+                    }
+                }
             }
         }
          
@@ -105,7 +158,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                             <span class="help-block"><?php echo $Group_name_err;?></span>
                         </div>
 
-                        <div class="form-group <?php echo (!empty($Big_ID)) ? 'has-error' : ''; ?>">
+                        <div class="form-group <?php echo (!empty($Big_ID_err)) ? 'has-error' : ''; ?>">
                             <label>Big's ID</label>
                             <input type="text" name="Big_ID" class="form-control" value="<?php echo $Big_ID; ?>">
                             <span class="help-block"><?php echo $Big_ID_err;?></span>
