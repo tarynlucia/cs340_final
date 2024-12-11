@@ -67,6 +67,7 @@
 		       <h2 class="pull-left">Member Details</h2>
                         <a href="createMember.php" class="btn btn-success pull-right">Add New Member</a>
                         <a href="viewMajorCount.php" class="btn btn-success pull-right" style="margin-right: 10px;">View Major Breakdown</a>
+                        <a href="viewOfficers.php" class="btn btn-success pull-right" style="margin-right: 10px;">View Officers</a>
                     </div>
                     <?php
                     // Include config file
