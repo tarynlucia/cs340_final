@@ -5,21 +5,21 @@
  
 // Define variables and initialize with empty values
 // Note: You can not update SSN 
-$Lname = $Fname = $Salary = $Bdate = $Address = $Sex = $Dno = $Super_ssn = "";
-$Lname_err = $Fname_err = $Address_err = $Sex_err = $Salary_err = $Dno_err = "" ;
+$Fname = $Lname = $Year = $Major = $Group_number = "";
+$Fname_err = $Lname_err = $Year_err = $Major_err = $Group_number_err = "";
 // Form default values
 
-if(isset($_GET["Ssn"]) && !empty(trim($_GET["Ssn"]))){
-	$_SESSION["Ssn"] = $_GET["Ssn"];
+if(isset($_GET["OSU_ID"]) && !empty(trim($_GET["OSU_ID"]))){
+	$_SESSION["OSU_ID"] = $_GET["OSU_ID"];
 
     // Prepare a select statement
-    $sql1 = "SELECT * FROM EMPLOYEE WHERE Ssn = ?";
+    $sql1 = "SELECT * FROM Members WHERE OSU_ID = ?";
   
     if($stmt1 = mysqli_prepare($link, $sql1)){
         // Bind variables to the prepared statement as parameters
-        mysqli_stmt_bind_param($stmt1, "s", $param_Ssn);      
+        mysqli_stmt_bind_param($stmt1, "i", $param_OSU_ID);      
         // Set parameters
-       $param_Ssn = trim($_GET["Ssn"]);
+       $param_OSU_ID = trim($_GET["OSU_ID"]);
 
         // Attempt to execute the prepared statement
         if(mysqli_stmt_execute($stmt1)){
@@ -28,14 +28,11 @@ if(isset($_GET["Ssn"]) && !empty(trim($_GET["Ssn"]))){
 
 				$row = mysqli_fetch_array($result1);
 
+                $Fname = $row['Fname'];
 				$Lname = $row['Lname'];
-				$Fname = $row['Fname'];
-				$Salery = $row['Salary'];
-				$Bdate = $row['Bdate'];
-				$Address = $row['Address'];
-				$Sex = $row['Sex'];
-				$Dno = $row['Dno'];
-				$Super_ssn = $row['Super_ssn'];
+				$Year = $row['Year'];
+				$Major = $row['Major'];
+				$Group_number = $row['Group_number'];
 			}
 		}
 	}
@@ -45,7 +42,7 @@ if(isset($_GET["Ssn"]) && !empty(trim($_GET["Ssn"]))){
 // Processing form data when form is submitted
 if($_SERVER["REQUEST_METHOD"] == "POST"){
     // the id is hidden and can not be changed
-    $Ssn = $_SESSION["Ssn"];
+    $OSU_ID = $_SESSION["OSU_ID"];
     // Validate form data this is similar to the create Employee file
     // Validate name
     $Fname = trim($_POST["Fname"]);
@@ -61,40 +58,39 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     } elseif(!filter_var($Lname, FILTER_VALIDATE_REGEXP, array("options"=>array("regexp"=>"/^[a-zA-Z\s]+$/")))){
         $Lname_err = "Please enter a valid last name.";
     }  
-    // Validate Address
-    $Address = trim($_POST["Address"]);
-    if(empty($Address)){
-        $Address_err = "Please enter Address.";     
+    // Validate Year
+    $Year = trim($_POST["Year"]);
+    if(empty($Year)){
+        $Year_err = "Please enter a Year.";     
     }
 	
-	// Validate Salary
-    $Salary = trim($_POST["Salary"]);
-    if(empty($Salary)){
-        $Salary_err = "Please enter salary.";    	
+	// Validate Major
+    $Major = trim($_POST["Major"]);
+    if(empty($Major)){
+        $Major_err = "Please enter a Major.";    	
 	}
 	
-	// Validate Department Number
-    $Dno = trim($_POST["Dno"]);
-    if(empty($Dno)){
-        $Dno_err = "Please enter department number.";    	
-	}
+    $Group_number = trim($_POST["Group_number"]);
+    if(empty($Group_number)){
+        $Group_number = null;
+    }
 
     // Check input errors before inserting into database
-    if(empty($Fname_err) && empty($Lname_err) && empty($Address_err) && empty($Salary_err) && empty($Dno_err)){
+    if(empty($Fname_err) && empty($Lname_err) && empty($Year_err) && empty($Major_err)){
         // Prepare an update statement
-        $sql = "UPDATE EMPLOYEE SET Fname=?, Lname=?, Address=?, Salary = ?, Dno = ? WHERE Ssn=?";
+        $sql = "UPDATE Members SET Fname=?, Lname=?, Year=?, Major = ?, Group_number = ? WHERE OSU_ID=?";
     
         if($stmt = mysqli_prepare($link, $sql)){
             // Bind variables to the prepared statement as parameters
-            mysqli_stmt_bind_param($stmt, "sssdis", $param_Fname, $param_Lname,$param_Address, $param_Salary,$param_Dno, $param_Ssn);
+            mysqli_stmt_bind_param($stmt, "ssisii", $param_Fname, $param_Lname, $param_Year, $param_Major, $param_Group_number, $param_OSU_ID);
             
             // Set parameters
             $param_Fname = $Fname;
 			$param_Lname = $Lname;            
-			$param_Address = $Address;
-            $param_Salary = $Salary;
-            $param_Dno = $Dno;
-            $param_Ssn = $Ssn;
+			$param_Year = $Year;
+            $param_Major = $Major;
+            $param_Group_number = $Group_number;
+            $param_OSU_ID = $OSU_ID;
             
             // Attempt to execute the prepared statement
             if(mysqli_stmt_execute($stmt)){
@@ -116,17 +112,17 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     // Check existence of sID parameter before processing further
 	// Form default values
 
-	if(isset($_GET["Ssn"]) && !empty(trim($_GET["Ssn"]))){
-		$_SESSION["Ssn"] = $_GET["Ssn"];
+	if(isset($_GET["OSU_ID"]) && !empty(trim($_GET["OSU_ID"]))){
+		$_SESSION["OSU_ID"] = $_GET["OSU_ID"];
 
 		// Prepare a select statement
-		$sql1 = "SELECT * FROM EMPLOYEE WHERE Ssn = ?";
+		$sql1 = "SELECT * FROM Members WHERE OSU_ID = ?";
   
 		if($stmt1 = mysqli_prepare($link, $sql1)){
 			// Bind variables to the prepared statement as parameters
-			mysqli_stmt_bind_param($stmt1, "s", $param_Ssn);      
+			mysqli_stmt_bind_param($stmt1, "i", $param_OSU_ID);      
 			// Set parameters
-			$param_Ssn = trim($_GET["Ssn"]);
+			$param_OSU_ID = trim($_GET["OSU_ID"]);
 
 			// Attempt to execute the prepared statement
 			if(mysqli_stmt_execute($stmt1)){
@@ -135,14 +131,11 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
 					$row = mysqli_fetch_array($result1);
 
+                    $Fname = $row['Fname'];
 					$Lname = $row['Lname'];
-					$Fname = $row['Fname'];
-					$Salary = $row['Salary'];
-					$Bdate = $row['Bdate'];
-					$Address = $row['Address'];
-					$Sex = $row['Sex'];
-					$Dno = $row['Dno'];
-					$Super_ssn = $row['Super_ssn'];
+					$Year = $row['Year'];
+					$Major = $row['Major'];
+					$Group_number = $row['Group_number'];
 				} else{
 					// URL doesn't contain valid id. Redirect to error page
 					header("location: error.php");
@@ -169,7 +162,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Company DB</title>
+    <title>Update Member</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css">
     <style type="text/css">
         .wrapper{
@@ -184,7 +177,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             <div class="row">
                 <div class="col-md-12">
                     <div class="page-header">
-                        <h3>Update Record for SSN =  <?php echo $_GET["Ssn"]; ?> </H3>
+                        <h3>Update Record for OSU_ID =  <?php echo $_GET["OSU_ID"]; ?> </H3>
                     </div>
                     <p>Please edit the input values and submit to update.
                     <form action="<?php echo htmlspecialchars(basename($_SERVER['REQUEST_URI'])); ?>" method="post">
@@ -198,22 +191,22 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                             <input type="text" name="Lname" class="form-control" value="<?php echo $Lname; ?>">
                             <span class="help-block"><?php echo $Lname_err;?></span>
                         </div>
-						<div class="form-group <?php echo (!empty($Address_err)) ? 'has-error' : ''; ?>">
-                            <label>Address</label>
-                            <input type="text" name="Address" class="form-control" value="<?php echo $Address; ?>">
-                            <span class="help-block"><?php echo $Address_err;?></span>
+						<div class="form-group <?php echo (!empty($Year_err)) ? 'has-error' : ''; ?>">
+                            <label>Year</label>
+                            <input type="text" name="Year" class="form-control" value="<?php echo $Year; ?>">
+                            <span class="help-block"><?php echo $Year_err;?></span>
                         </div>
-                        <div class="form-group <?php echo (!empty($Salary_err)) ? 'has-error' : ''; ?>">
-                            <label>Salary</label>
-                            <input type="text" name="Salary" class="form-control" value="<?php echo $Salary; ?>">
-                            <span class="help-block"><?php echo $Salary_err;?></span>
+                        <div class="form-group <?php echo (!empty($Major_err)) ? 'has-error' : ''; ?>">
+                            <label>Major</label>
+                            <input type="text" name="Major" class="form-control" value="<?php echo $Major; ?>">
+                            <span class="help-block"><?php echo $Major_err;?></span>
                         </div>
-						<div class="form-group <?php echo (!empty($Dno_err)) ? 'has-error' : ''; ?>">
-                            <label>Department Number</label>
-                            <input type="number" min="1" max="20" name="Dno" class="form-control" value="<?php echo $Dno; ?>">
-                            <span class="help-block"><?php echo $Dno_err;?></span>
+						<div class="form-group <?php echo (!empty($Group_number_err)) ? 'has-error' : ''; ?>">
+                            <label>Group Number</label>
+                            <input type="number" min="1" max="20" name="Group_number" class="form-control" value="<?php echo $Group_number; ?>">
+                            <span class="help-block"><?php echo $Group_number_err;?></span>
                         </div>						
-                        <input type="hidden" name="Ssn" value="<?php echo $Ssn; ?>"/>
+                        <input type="hidden" name="OSU_ID" value="<?php echo $OSU_ID; ?>"/>
                         <input type="submit" class="btn btn-primary" value="Submit">
                         <a href="index.php" class="btn btn-default">Cancel</a>
                     </form>

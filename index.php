@@ -6,7 +6,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Company DB</title>
+    <title>SASE Website</title>
 <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 
@@ -44,26 +44,21 @@
                 <div class="col-md-12">
 		    <div class="page-header clearfix">
 		     <h2> SASE Website Project CS 340 </h2> 
-                       <p> Project should include CRUD operations. In this website you can:
-				<ol> 	<li> CREATE new employess and  dependents </li>
-					<li> RETRIEVE all dependents and prjects for an employee</li>
-                                        <li> UPDATE employeee and dependent records</li>
-					<li> DELETE employee and dependent records </li>
+                       <p> On this webpage you can:
+				<ol> 	<li> CREATE new Members </li>
+					<li> RETRIEVE all Meetings attended by a member</li>
+                                        <li> Add new Meetings attended by a member</li>
+					<li> DELETE member records </li>
 				</ol>
 		       <h2 class="pull-left">Member Details</h2>
-                        <!-- <a href="createEmployee.php" class="btn btn-success pull-right">Add New Employee</a> -->
+                        <a href="createMember.php" class="btn btn-success pull-right">Add New Member</a>
+                        <a href="viewMajorCount.php" class="btn btn-success pull-right" style="margin-right: 10px;">View Major Breakdown</a>
                     </div>
                     <?php
                     // Include config file
                     require_once "config.php";
                     
-                    // Attempt select all employee query execution
-					// *****
-					// Insert your function for Salary Level
-					/*
-						$sql = "SELECT Ssn,Fname,Lname,Salary, Address, Bdate, PayLevel(Ssn) as Level, Super_ssn, Dno
-							FROM EMPLOYEE";
-					*/
+
                     $sql = "SELECT *
 							FROM Members";
                     if($result = mysqli_query($link, $sql)){
@@ -76,7 +71,8 @@
                                         echo "<th width=10%>Last Name</th>";
                                         echo "<th width=10%>Year</th>";
 										echo "<th width=10%>Major</th>";
-										echo "<th width =10%>Group Number</th>";
+										echo "<th width=10%>Group Number</th>";
+                                        echo "<th width=10%>Actions</th>";
                                     echo "</tr>";
                                 echo "</thead>";
                                 echo "<tbody>";
@@ -89,10 +85,10 @@
 										echo "<td>" . $row['Major'] . "</td>";
                                         echo "<td>" . $row['Group_number'] . "</td>";
                                         echo "<td>";
-                                            // echo "<a href='viewProjects.php?Ssn=". $row['Ssn']."&Lname=".$row['Lname']."' title='View Projects' data-toggle='tooltip'><span class='glyphicon glyphicon-eye-open'></span></a>";
-                                            // echo "<a href='updateEmployee.php?Ssn=". $row['Ssn'] ."' title='Update Record' data-toggle='tooltip'><span class='glyphicon glyphicon-pencil'></span></a>";
-                                            // echo "<a href='deleteEmployee.php?Ssn=". $row['Ssn'] ."' title='Delete Record' data-toggle='tooltip'><span class='glyphicon glyphicon-trash'></span></a>";
-											// echo "<a href='viewDependents.php?Ssn=". $row['Ssn']."&Lname=".$row['Lname']."' title='View Dependents' data-toggle='tooltip'><span class='glyphicon glyphicon-user'></span></a>";
+                                            // echo "<a href='viewProjects.php?Ssn=". $row['OSU_ID']."&Lname=".$row['Lname']."' title='View Projects' data-toggle='tooltip'><span class='glyphicon glyphicon-eye-open'></span></a>";
+                                            echo "<a href='updateMember.php?OSU_ID=". $row['OSU_ID'] ."' title='Update Member' data-toggle='tooltip'><span class='glyphicon glyphicon-pencil'></span></a>";
+                                            echo "<a href='deleteMember.php?OSU_ID=". $row['OSU_ID'] ."' title='Delete Member' data-toggle='tooltip'><span class='glyphicon glyphicon-trash'></span></a>";
+											echo "<a href='viewMeetingsAttended.php?OSU_ID=". $row['OSU_ID'] ."' title='View Meetings Attended' data-toggle='tooltip'><span class='glyphicon glyphicon-user'></span></a>";
                                         echo "</td>";
                                     echo "</tr>";
                                 }
