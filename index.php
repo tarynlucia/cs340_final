@@ -58,12 +58,17 @@
                 <div class="col-md-12">
 		    <div class="page-header clearfix">
 		     <h2> SASE Website Project CS 340 </h2> 
-                       <p> On this webpage you can:
-				<ol> 	<li> CREATE new Members </li>
-					<li> RETRIEVE all Meetings attended by a member</li>
-                                        <li> CREATE new Meetings attended by a member</li>
-					<li> DELETE member records </li>
-				</ol>
+                <p> In this page you can:
+                <ol> 	
+                    <li> RETRIEVE Officers </li>
+                    <li> RETRIEVE major breakdown </li>
+                    <li> CREATE new Members </li>
+                    <li> RETRIEVE all Meetings attended by a Member</li>
+                    <li> UPDATE Members </li>
+                    <li> CREATE new Meetings attended by a Member</li>
+                    <li> DELETE Member records </li>
+                    <li> DELETE Meetings attended by a Member </li>
+                </ol>
 		       <h2 class="pull-left">Member Details</h2>
                         <a href="createMember.php" class="btn btn-success pull-right">Add New Member</a>
                         <a href="viewMajorCount.php" class="btn btn-success pull-right" style="margin-right: 10px;">View Major Breakdown</a>
