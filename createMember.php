@@ -71,7 +71,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 					exit();
             } else{
                 echo "<center><h4>Error while creating a new member</h4></center>";
-				$OSU_ID_err = "Enter a unique OSU_ID.";
             }
         }
          

@@ -65,7 +65,7 @@
                         if(mysqli_stmt_execute($stmt)){
                             $result = mysqli_stmt_get_result($stmt);
                     
-                            echo"<h4> Littles: </h4><p>";
+                            echo"<h4> Group Members: </h4><p>";
                             echo"<br>";
                             if(mysqli_num_rows($result) > 0){
                                 echo "<table class='table table-bordered table-striped'>";
