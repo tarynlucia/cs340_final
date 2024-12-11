@@ -1,3 +1,5 @@
+-- Names: Charissa Kau, Taryn Eng, Johnny Vo, Thien Tu
+
 -- phpMyAdmin SQL Dump
 -- version 5.2.1-1.el7.remi
 -- https://www.phpmyadmin.net/

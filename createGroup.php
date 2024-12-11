@@ -1,4 +1,7 @@
 <?php
+
+// Names: Charissa Kau, Taryn Eng, Johnny Vo, Thien Tu
+
 // Include config file
 require_once "config.php";
  

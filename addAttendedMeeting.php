@@ -1,4 +1,7 @@
 <?php
+
+// Names: Charissa Kau, Taryn Eng, Johnny Vo, Thien Tu
+
 session_start();
 
 if (isset($_GET["OSU_ID"]) && !empty(trim($_GET["OSU_ID"]))){
